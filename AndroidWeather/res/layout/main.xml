@@ -1,12 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
-</LinearLayout>
+<AbsoluteLayout
+android:id="@+id/widget0"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android">
+<CheckBox
+android:id="@+id/widget38"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginTop="5px"
+android:layout_marginBottom="5px"
+android:layout_marginLeft="5px"
+android:layout_marginRight="5px"
+android:text="Целзиусови"
+android:textSize="12sp"
+android:typeface="sans"
+android:gravity="left"
+android:layout_x="2px"
+android:layout_y="9px"
+>
+</CheckBox>
+<EditText
+android:id="@+id/widget39"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginTop="5px"
+android:layout_marginBottom="5px"
+android:layout_marginLeft="5px"
+android:layout_marginRight="5px"
+android:text="Локација"
+android:gravity="left"
+android:password="true"
+android:layout_x="129px"
+android:layout_y="5px"
+>
+</EditText>
+
+<ImageButton
+android:id="@+id/btnSearch"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+
+android:layout_x="245px"
+android:layout_y="7px"
+>
+</ImageButton>
+<ImageView
+android:id="@+id/widget47"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_x="60px"
+android:layout_y="120px"
+>
+</ImageView>
+<TextView
+android:id="@+id/state"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Состојба"
+android:layout_x="115px"
+android:layout_y="124px"
+>
+</TextView>
+<ImageView
+android:id="@+id/widget53"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_x="59px"
+android:layout_y="159px"
+>
+</ImageView>
+<TextView
+android:id="@+id/widget54"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Температура"
+android:layout_x="118px"
+android:layout_y="167px"
+>
+</TextView>
+</AbsoluteLayout>
