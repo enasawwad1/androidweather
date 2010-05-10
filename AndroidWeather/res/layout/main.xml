@@ -4,7 +4,10 @@
 android:id="@+id/widget0"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
-xmlns:android="http://schemas.android.com/apk/res/android">
+xmlns:android="http://schemas.android.com/apk/res/android" android:background="@drawable/icon">
+
+
+
 <CheckBox
 android:id="@+id/chk_usecelsius"
 android:layout_width="wrap_content"
@@ -66,4 +69,6 @@ android:layout_x="118px"
 android:layout_y="167px"
 >
 </TextView>
+
+
 </AbsoluteLayout>
