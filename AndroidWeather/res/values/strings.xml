@@ -2,4 +2,5 @@
 <resources>
     <string name="hello">Hello World, AndroidWeatherActivity!</string>
     <string name="app_name">AndroidWeather</string>
+<color name="Black">#FFFFFF</color>
 </resources>
