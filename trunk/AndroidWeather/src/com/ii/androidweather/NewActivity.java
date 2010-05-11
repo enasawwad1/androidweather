@@ -10,7 +10,7 @@ public class NewActivity extends Activity{
 
 	        TextView textview = new TextView(this);
 	        textview.setText("New Tab");
-	        setContentView(textview);
+	        setContentView(R.layout.now);
 	    }
 
 }
