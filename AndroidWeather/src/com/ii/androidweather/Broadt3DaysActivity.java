@@ -14,12 +14,9 @@ import android.widget.TextView;
 public class Broadt3DaysActivity extends Activity{
 		   public void onCreate(Bundle savedInstanceState) {
 		        super.onCreate(savedInstanceState);
-
-		      //  TextView textview = new TextView(this);
-		     //   textview.setText("3 Days Tab");
+		        
 		        setContentView(R.layout.days);
-		        //setContentView(R.layout.main);
-		        //setContentView(R.layout.pocetno);
+		       
 		        try { 
 		             /* Create a URL we want to load some xml-data from. */ 
 		        	 URL url = new URL(WeatherUtils.url); 

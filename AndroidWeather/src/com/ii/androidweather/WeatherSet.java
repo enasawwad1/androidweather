@@ -12,6 +12,15 @@ public class WeatherSet {
 	// Fields
 	// ===========================================================
 
+	public WeatherSet(){}
+	private static WeatherSet instance ;
+	public static WeatherSet getInstance (){
+	if(instance==null)
+	{instance =new WeatherSet();
+		
+	}
+		return  instance;	
+	};
 	private WeatherCurrentConditionVO myCurrentCondition = null;
 	private ArrayList<WeatherForecastConditionVO> myForecastConditions = 
 		new ArrayList<WeatherForecastConditionVO>(4);
