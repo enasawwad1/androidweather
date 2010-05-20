@@ -19,7 +19,7 @@ android:name="android.permission.INTERNET" />
                 >
         </activity>
        
-        <activity android:name=".AndroidWeatherTab"
+        <activity android:name=".WebServiceActivity"
                   android:label="@string/app_name">           
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
