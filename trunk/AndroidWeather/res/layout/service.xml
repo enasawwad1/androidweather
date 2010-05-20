@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical" 
+  android:layout_width="fill_parent" 
+  android:layout_height="fill_parent">
+  <TextView android:layout_width="fill_parent" 
+  android:layout_height="wrap_content" 
+  android:text="Integer Adder (SOAP Client Example)" /> 
+  
+<LinearLayout android:orientation="horizontal" 
+android:layout_width="fill_parent"
+ android:layout_height="wrap_content">
+  <TextView android:layout_width="wrap_content" 
+  android:layout_height="wrap_content" 
+  android:text="First Number" /> 
+  <android:EditText id="@+id/numberA" 
+  android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="10" /> 
+  </LinearLayout>
+ <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+  <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="The Other Number" /> 
+  <android:EditText id="@+id/numberB" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="20" /> 
+  </LinearLayout>
+  <Button id="@+id/cmdCalculate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Calculate" /> 
+  <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="STATUS" /> 
+  <TextView id="@+id/lblStatus" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="... editing ..." /> 
+  </LinearLayout>
