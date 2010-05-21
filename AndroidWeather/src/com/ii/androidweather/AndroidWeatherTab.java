@@ -16,6 +16,9 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 public class AndroidWeatherTab extends TabActivity {
+	
+	static TabHost tabHost;
+	
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.pocetno);
@@ -54,8 +57,8 @@ public class AndroidWeatherTab extends TabActivity {
 	    
 	    
 	    Resources res = getResources(); // Resource object to get Drawables
-	    TabHost tabHost = getTabHost(); // The activity TabHost
-   TabHost.TabSpec spec;  // Resusable TabSpec for each tab
+	    tabHost = getTabHost(); // The activity TabHost
+        TabHost.TabSpec spec;  // Resusable TabSpec for each tab
 	    Intent intent;  // Reusable Intent for each tab
 
 	    // Create an Intent to launch an Activity for the tab (to be reused)
@@ -82,5 +85,11 @@ public class AndroidWeatherTab extends TabActivity {
 	    
 	    tabHost.setCurrentTabByTag("now");
 
+	}
+	
+	public static void switchTab(String tabName){
+		
+		tabHost.setCurrentTabByTag(tabName);
+		
 	}
 }
