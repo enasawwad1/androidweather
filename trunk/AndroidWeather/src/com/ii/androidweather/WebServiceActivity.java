@@ -12,15 +12,17 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class WebServiceActivity extends Activity {
-	private static final String SOAP_ACTION = "http://tempuri.org/GetWeather";
+	private static final String SOAP_ACTION = "http://tempuri.org/getString";
 	private static final String METHOD_NAME = "getString";
 	private static final String NAMESPACE = "http://tempuri.org/";
+	//private static final String URL = "http://www.w3schools.com/webservices/tempconvert.asmx";
 	private static final String URL = "http://student.labs.ii.edu.mk/ii11532/Service.asmx";
 	TextView tvError;
 
@@ -28,12 +30,12 @@ public class WebServiceActivity extends Activity {
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 
-		setContentView(R.layout.service);
-		tvError = (TextView) findViewById(R.id.lblStatus);
+		setContentView(R.layout.now);
+		tvError = (TextView) findViewById(R.id.myLocation);
 		SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-		int a = 10, b = 20;
-		request.addProperty("a", a);
-		request.addProperty("b", b);
+		int a = 10;
+		//request.addProperty("Celsius",32);
+		//request.addProperty("b", b);
 
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SoapEnvelope.VER11);
@@ -44,7 +46,12 @@ public class WebServiceActivity extends Activity {
 		try {
 				androidHttpTransport.call(SOAP_ACTION, envelope);
 				SoapPrimitive result = (SoapPrimitive)envelope.getResponse();
-			tvError.setText(result.toString());
+		String sd=result.toString();
+		Log.v("result", sd);
+	
+		tvError.setText(sd);
+	
+		
 		}
 
 		catch (IllegalArgumentException e) {
