@@ -14,6 +14,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.ksoap2.serialization.SoapObject;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
@@ -68,8 +69,7 @@ public class AndroidWeatherActivity extends Activity {
         /* Display the TextView. */ 
       //  this.setContentView(tv); 
    } 
-	//metoda koja sluzi za prakanje na query do web servisot 
-    
+	   
     public void queryWS(String query)
     {
     HttpClient httpClient = new DefaultHttpClient();

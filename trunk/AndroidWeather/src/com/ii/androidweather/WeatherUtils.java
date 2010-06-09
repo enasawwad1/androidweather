@@ -1,7 +1,7 @@
 package com.ii.androidweather;
 
 public class WeatherUtils {
-	public static String url ="http://www.google.com/ig/api?weather=Skopje"; 
+	public static String url ="http://maps.google.com/maps/api/geocode/xml?latlng="; 
 	public static final String SERVICE_ENDPOINT="http://api.wunderground." +
 	"com/auto/wui/geo/GeoLookupXML/index.xml?query=";
 	public static int fahrenheitToCelsius(int tFahrenheit) {

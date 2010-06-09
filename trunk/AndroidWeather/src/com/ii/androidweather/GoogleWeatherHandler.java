@@ -9,8 +9,15 @@ public class GoogleWeatherHandler extends DefaultHandler {
 	// ===========================================================
 	// Fields
 	// ===========================================================
-
-	private WeatherSet myWeatherSet = null;
+	private static  GoogleWeatherHandler instance=null;
+	public static GoogleWeatherHandler getInstance (){
+	if(instance==null)
+	{instance =new GoogleWeatherHandler();
+		
+	}
+		return  instance;	
+	};
+	private  WeatherSet myWeatherSet = null;
 	private boolean in_forecast_information = false;
 	private boolean in_current_conditions = false;
 	private boolean in_forecast_conditions = false;
@@ -38,6 +45,7 @@ public class GoogleWeatherHandler extends DefaultHandler {
 			String qName, Attributes atts) throws SAXException {
 		// 'Outer' Tags
 		if (localName.equals("forecast_information")) {
+			this.myWeatherSet.setMyForecastInfromation(new WeatherForecastInformationVO());
 			this.in_forecast_information = true;
 		} else if (localName.equals("current_conditions")) {
 			this.myWeatherSet
@@ -51,14 +59,21 @@ public class GoogleWeatherHandler extends DefaultHandler {
 			String dataAttribute = atts.getValue("data");
 			// 'Inner' Tags of "<forecast_information>"
 			if (localName.equals("city")) {
+			this.myWeatherSet.getMyForecastInfromation().setCity(dataAttribute);	
 			} else if (localName.equals("postal_code")) {
+				this.myWeatherSet.getMyForecastInfromation().setPostal_code(dataAttribute);
 			} else if (localName.equals("latitude_e6")) {
+				this.myWeatherSet.getMyForecastInfromation().setLatitude_e6(dataAttribute);
 				/* One could use this to convert city-name to Lat/Long. */
 			} else if (localName.equals("longitude_e6")) {
+				this.myWeatherSet.getMyForecastInfromation().setLongitude_e6(dataAttribute);
 				/* One could use this to convert city-name to Lat/Long. */
 			} else if (localName.equals("forecast_date")) {
+				this.myWeatherSet.getMyForecastInfromation().setForecast_date(dataAttribute);
 			} else if (localName.equals("current_date_time")) {
+				this.myWeatherSet.getMyForecastInfromation().setCurrent_date_time(dataAttribute);
 			} else if (localName.equals("unit_system")) {
+				this.myWeatherSet.getMyForecastInfromation().setUnit_system(dataAttribute);
 				if (dataAttribute.equals("SI"))
 					this.formatSI = true;
 			}
@@ -98,10 +113,10 @@ public class GoogleWeatherHandler extends DefaultHandler {
 						Integer.parseInt(dataAttribute));
 			} else if (localName.equals("humidity")) {
 				this.myWeatherSet.getWeatherCurrentCondition().setHumidity(
-						dataAttribute);
+						dataAttribute.split(":")[1]);
 			} else if (localName.equals("wind_condition")) {
 				this.myWeatherSet.getWeatherCurrentCondition()
-						.setWindCondition(dataAttribute);
+						.setWindCondition(dataAttribute.split(":")[1]);
 			}
 			// 'Inner' Tags within "<forecast_conditions>"
 			else if (localName.equals("low")) {
