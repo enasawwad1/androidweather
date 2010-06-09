@@ -2,17 +2,14 @@
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical"
-  android:layout_width="fill_parent"
- android:layout_height="fill_parent"
-  >
-  <TextView
-android:id="@+id/selection"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"/>
+  android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/background">
+  <TextView android:id="@+id/selection" android:layout_width="fill_parent" android:layout_height="wrap_content" /><Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/btnAdd" android:text="Add New Location" android:layout_gravity="right"></Button>
 <ListView
 android:id="@android:id/list"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
+android:layout_width="wrap_content"
+
 android:drawSelectorOnTop="false"
-/>
+android:choiceMode="singleChoice"
+android:layout_height="fill_parent" android:footerDividersEnabled="true" android:headerDividersEnabled="true" android:paddingLeft="30px"></ListView>
+
 </LinearLayout>

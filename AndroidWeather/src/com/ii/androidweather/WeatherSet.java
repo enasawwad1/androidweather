@@ -21,6 +21,7 @@ public class WeatherSet {
 	}
 		return  instance;	
 	};
+	private WeatherForecastInformationVO myForecastInfromation=null;
 	private WeatherCurrentConditionVO myCurrentCondition = null;
 	private ArrayList<WeatherForecastConditionVO> myForecastConditions = 
 		new ArrayList<WeatherForecastConditionVO>(4);
@@ -31,11 +32,21 @@ public class WeatherSet {
 
 	public WeatherCurrentConditionVO getWeatherCurrentCondition() {
 		return myCurrentCondition;
+	
 	}
-
+	
 	public void setWeatherCurrentCondition(
 			WeatherCurrentConditionVO myCurrentWeather) {
 		this.myCurrentCondition = myCurrentWeather;
+	}
+
+	public WeatherForecastInformationVO getMyForecastInfromation() {
+		return myForecastInfromation;
+	}
+
+	public void setMyForecastInfromation(
+			WeatherForecastInformationVO myForecastInfromation) {
+		this.myForecastInfromation = myForecastInfromation;
 	}
 
 	public ArrayList<WeatherForecastConditionVO> getWeatherForecastConditions() {

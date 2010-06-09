@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:enabled="true" android:id="@+id/sysUI" android:title="SI format" android:visible="true" android:checked="true" android:checkable="true"></item>
+<item android:id="@+id/findMe" android:enabled="true" android:title="Find Me" android:visible="true"></item>
+</menu>

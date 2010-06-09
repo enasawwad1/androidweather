@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -22,98 +23,208 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class Broadt3DaysActivity extends Activity{
-	
+	  TextView tv;
+	  
+	  ImageView myImage;
+	  URL imgUrl;
+		URLConnection conn;
+		InputStream is;
+		BufferedInputStream bis;  
+		Bitmap bm;
+		public void setView (){
+			ArrayList<WeatherForecastConditionVO> lista=null;
+		  
+			// int size=GoogleWeatherHandler.getInstance().getWeatherSet().getWeatherForecastConditions().size();
+			if(GoogleWeatherHandler.getInstance().getWeatherSet()!=null)
+			{
+				Log.v("viewday", Integer.toString(MyLocationActivity.state));
+				
+				lista=GoogleWeatherHandler.getInstance().getWeatherSet().getWeatherForecastConditions();
+				
+				tv=(TextView)findViewById(R.id.status);
+				 tv.setText("");   
+				
+				 myImage=(ImageView)findViewById(R.id.slikce1);
+			
+			
+			try 
+		    {
+				imgUrl = new URL("http://www.google.com"+lista.get(1).getIconURL());
+		
+				conn=imgUrl.openConnection();
+		    conn.connect();
+		    is=conn.getInputStream();
+		    bis=new BufferedInputStream(is);
+		    bm=BitmapFactory.decodeStream(bis);
+		    bis.close();
+		    is.close();
+		    myImage.setImageBitmap(bm);
+		    Log.v("kate2", "uspeav");
+		    
+		    //slikce2
+		    myImage=(ImageView)findViewById(R.id.slikce2);
+		    imgUrl = new URL("http://www.google.com"+ lista.get(2).getIconURL());
+		    conn=imgUrl.openConnection();
+		    conn.connect();
+		    is=conn.getInputStream();
+		    bis=new BufferedInputStream(is);
+		    bm=BitmapFactory.decodeStream(bis);
+		    bis.close();
+		    is.close();
+		    myImage.setImageBitmap(bm);
+		    
+		    //slikce 3
+		    myImage=(ImageView)findViewById(R.id.slikce3);
+		    imgUrl = new URL("http://www.google.com"+lista.get(3).getIconURL() );
+		    conn=imgUrl.openConnection();
+		    conn.connect();
+		    is=conn.getInputStream();
+		    bis=new BufferedInputStream(is);
+		    bm=BitmapFactory.decodeStream(bis);
+		    bis.close();
+		    is.close();
+		    myImage.setImageBitmap(bm);
+		    
+		    //
+		    
+		    }catch (IOException e)
+		    {
+		    }
+		    
+		    tv=(TextView)findViewById(R.id.foreLocation);
+	        tv.setText(GoogleWeatherHandler.getInstance().getWeatherSet().getMyForecastInfromation().getCity());
+	        
+	        tv=(TextView)findViewById(R.id.foreUpdate);
+	        tv.setText(GoogleWeatherHandler.getInstance().getWeatherSet().getMyForecastInfromation().getCurrent_date_time().split(" ")[1]);
+	        
+	        tv=(TextView)findViewById(R.id.foreDay1);
+	        tv.setText(lista.get(1).getDayofWeek());
+	        
+
+	        tv=(TextView)findViewById(R.id.foreDay2);
+	        tv.setText(lista.get(2).getDayofWeek());
+	        
+
+	        tv=(TextView)findViewById(R.id.foreDay3);
+	        tv.setText(lista.get(3).getDayofWeek());
+	        
+	        if(AndroidWeatherTab.chk_useSIformat)
+	        {
+	        tv=(TextView)findViewById(R.id.fore1Max);
+	        tv.setText(Integer.toString(lista.get(1).getTempMaxCelsius())+" ° C");
+	        
+	        tv=(TextView)findViewById(R.id.fore2Max);
+	        tv.setText(Integer.toString(lista.get(2).getTempMaxCelsius())+" ° C");
+	       
+	        tv=(TextView)findViewById(R.id.fore3Max);
+	        tv.setText(Integer.toString(lista.get(3).getTempMaxCelsius())+" ° C");
+	        
+	        tv=(TextView)findViewById(R.id.for1Min);
+	        tv.setText(Integer.toString(lista.get(1).getTempMinCelsius())+" ° C");
+	        
+	        tv=(TextView)findViewById(R.id.fore2Min);
+	        tv.setText(Integer.toString(lista.get(2).getTempMinCelsius())+" ° C");
+	       
+	        tv=(TextView)findViewById(R.id.fore3Min);
+	        tv.setText(Integer.toString(lista.get(3).getTempMinCelsius())+" ° C");
+	        }
+	        else
+	        {
+	        	 tv=(TextView)findViewById(R.id.fore1Max);
+	 	        tv.setText(Integer.toString(WeatherUtils.celsiusToFahrenheit(lista.get(1).getTempMaxCelsius()))+" ° F");
+	 	        
+	 	        tv=(TextView)findViewById(R.id.fore2Max);
+	 	        tv.setText(Integer.toString(WeatherUtils.celsiusToFahrenheit(lista.get(2).getTempMaxCelsius()))+" ° F");
+	 	       
+	 	        tv=(TextView)findViewById(R.id.fore3Max);
+	 	        tv.setText(Integer.toString(WeatherUtils.celsiusToFahrenheit(lista.get(3).getTempMaxCelsius()))+" ° F");
+	 	        
+	 	        tv=(TextView)findViewById(R.id.for1Min);
+	 	        tv.setText(Integer.toString(WeatherUtils.celsiusToFahrenheit(lista.get(1).getTempMinCelsius()))+" ° F");
+	 	        
+	 	        tv=(TextView)findViewById(R.id.fore2Min);
+	 	        tv.setText(Integer.toString(WeatherUtils.celsiusToFahrenheit(lista.get(2).getTempMinCelsius()))+" ° F");
+	 	       
+	 	        tv=(TextView)findViewById(R.id.fore3Min);
+	 	        tv.setText(Integer.toString(WeatherUtils.celsiusToFahrenheit(lista.get(3).getTempMinCelsius()))+" ° F");
+	 	        
+	        }
+	      }
+			
+			else
+			{	
+				tv=(TextView)findViewById(R.id.status);
+				 tv.setText("Unknown:"+ MyLocationActivity.city);   
+					
+				
+			}
+			}
+		
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 		   public void onCreate(Bundle savedInstanceState) {
 		        super.onCreate(savedInstanceState);
 		   
-		        setContentView(R.layout.pocetno);
-		       
-		        try { 
-		             /* Create a URL we want to load some xml-data from. */ 
-		        	/* URL url = new URL(WeatherUtils.url); 
-
-		              Get a SAXParser from the SAXPArserFactory.  
-		             SAXParserFactory spf = SAXParserFactory.newInstance(); 
-		             SAXParser sp = spf.newSAXParser(); 
-
-		              Get the XMLReader of the SAXParser we created.  
-		             XMLReader xr = sp.getXMLReader(); 
-		              Create a new ContentHandler and apply it to the XML-Reader 
-		             GoogleWeatherHandler WeatherHandler = new GoogleWeatherHandler(); 
-		             xr.setContentHandler(WeatherHandler); 
-		              
-		              Parse the xml-data from our URL.  
-		             xr.parse(new InputSource(url.openStream())); 
-		              Parsing has finished.  
-
-		              Our ExampleHandler now provides the parsed data to us.  
-		             WeatherSet parsedExampleDataSet = WeatherHandler.getWeatherSet(); 
-		             
-		             //TextView sostojbaFld=(TextView)findViewById(R.id.state);
-		             //sostojbaFld.setText(parsedExampleDataSet.getWeatherCurrentCondition().getCondition());
-		             
-		             //TextView temFld=(TextView)findViewById(R.id.tempText);
-		            // temFld.setText(parsedExampleDataSet.getWeatherCurrentCondition().getTempCelcius().toString());
-		             
-		             //TextView humidity=(TextView)findViewById(R.id.TextView01);
-		             //humidity.setText(parsedExampleDataSet.getWeatherCurrentCondition().getHumidity());
-		             
-		             TextView location=(TextView)findViewById(R.id.TextView01);
-		             location.setText(parsedExampleDataSet.getWeatherCurrentCondition().getCondition());
-		             
-		             TextView max=(TextView)findViewById(R.id.TextView03);
-		             max.setText(parsedExampleDataSet.getLastWeatherForecastCondition().getTempMaxCelsius());
-		             
-		             TextView min=(TextView)findViewById(R.id.TextView04);
-		             min.setText(parsedExampleDataSet.getLastWeatherForecastCondition().getTempMinCelsius());
-		             */
-		        	Log.v("Vlez","vlegv na majka ti");
-		             URL y = new URL("http://google.com");
-		             
-		             URLConnection conn = y.openConnection();
-		 			 conn.connect();
-		 			Log.v("connect","se konektirav");
-		 			InputStream is = conn.getInputStream();
-		 			BufferedInputStream bis = new BufferedInputStream(is);
-		 			Bitmap bm = BitmapFactory.decodeStream(bis);
-		 			Log.v("connect1","dekodirav vo slika");
-		 			bis.close();
-		 			is.close();
-		            Log.v("imgData", bm.toString());
-		            ImageView v=(ImageView)findViewById(R.id.slikce1);
-		            v.setImageBitmap(bm);
-		             
-		        } catch (Exception e) { 
-		             /* Display any Error to the GUI. */ 
-		            // tv.setText("Error: " + e.getMessage()); 
-		            
-		        } 
-		        /* Display the TextView. */ 
-		      //  this.setContentView(tv); 
+		        
+		        setContentView(R.layout.days);
+		     
+		  setView();
+		        
 		   } 
-		   private Drawable ImageOperations(String url, String saveFilename) {
-				try {
-					InputStream is = (InputStream) this.fetch(url);
-					Drawable d = Drawable.createFromStream(is, "src");
-					return d;
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-					return null;
-				} catch (IOException e) {
-					e.printStackTrace();
-					return null;
-				}
+		  
+		   public boolean onCreateOptionsMenu(Menu menu) {
+			    MenuInflater inflater = getMenuInflater();
+			    inflater.inflate(R.menu.menu, menu);
+			    return true;
 			}
-
-		   public Object fetch(String address) throws MalformedURLException,IOException {
-				URL url = new URL(address);
-				Object content = url.getContent();
-				return content;
+			
+			public boolean onOptionsItemSelected(MenuItem item) {
+			    switch (item.getItemId()) {
+			        case R.id.sysUI:    { 
+			        	AndroidWeatherTab.chk_useSIformat=!AndroidWeatherTab.chk_useSIformat;
+			        	this.setView();
+			        	if(AndroidWeatherTab.chk_useSIformat)
+			        		
+			        	Toast.makeText(this, "The format is SI!", Toast.LENGTH_LONG).show();
+			        else 
+			         	Toast.makeText(this, "The format is not SI!", Toast.LENGTH_LONG).show();
+			        	
+			        break;
+			         }
+			        case R.id.findMe:    {
+			        NewActivity.activate=1;
+			        	AndroidWeatherTab.switchTab("now");
+			        	
+			        }   
+			    }
+			    return true;
 			}
+			
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		this.setView ();
+		 if(  MyLocationActivity.state==1)
+	       {
+			Log.v("resume", Integer.toString(MyLocationActivity.state));
+			this.setView ();
 
+	       }	
+		 MyLocationActivity.state=0;
 	}
+}
